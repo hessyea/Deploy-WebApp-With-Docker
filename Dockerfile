@@ -13,7 +13,7 @@ COPY . .
 RUN npm install web-push --save
 EXPOSE 8080
 
-CMD [ "node", "index.js" ]
+CMD [ "node", "assets/js/main.js" ]
 
 #doc
 # EXPOSE 8080
