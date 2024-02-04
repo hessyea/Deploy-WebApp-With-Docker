@@ -7,7 +7,7 @@ WORKDIR /usr/app
 COPY ./ /usr/app
 RUN npm init --yes
 RUN npm install --production
-
+RUN npm install express --save
 RUN npm install web-push --save
 EXPOSE 8080
 CMD [ "node", "./assets/js/main.js" ]
