@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 // VAPID keys should be generated only once.
 app.use(express.static('fold22'));
-
+app.listen(8080, () => console.log(`listening on port ${port}!`));
 
 
 if (process.env.RUN_TIMES == 0){
