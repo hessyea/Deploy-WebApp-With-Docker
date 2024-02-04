@@ -6,7 +6,7 @@ if (process.env.RUN_TIMES == 0){
   process.env.PUB_KEY = vapidKeys.publicKey;
   process.env.PRIV_KEY = vapidKeys.privateKey;
   process.env.RUN_TIMES = 1;
-  
+  console.log("done VAPI_KEYS");
 }
 
 webpush.setVapidDetails(
