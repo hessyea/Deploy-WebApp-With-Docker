@@ -8,10 +8,10 @@ app.listen(8080, function(err){
     console.log("Server listening on Port");
 });
 app.use(express.static('fold22'));
-
+/*
 app.get('/tst', function(req, res){
  handle22(req, res);
-});
+});*/
 
 
 if (process.env.RUN_TIMES == 0){
