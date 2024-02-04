@@ -19,7 +19,7 @@ webpush.setVapidDetails(
   process.env.PUB_KEY,
   process.env.PRIV_KEY
 );
-exports.kk22 = function handler(req, res) {
+function handler(req, res) {
   if (req.method === "POST") {
     const { subscription, dataToSend } = req.body;
     return webpush
@@ -34,3 +34,4 @@ exports.kk22 = function handler(req, res) {
 
   return res.status(401).json({ message: "Method not allowed" });
 }
+module.exports = handler;
