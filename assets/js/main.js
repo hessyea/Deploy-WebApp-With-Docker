@@ -1,18 +1,9 @@
 const webpush = require('web-push');
 var http = require('http');
-const fs = require('fs');
-const java = fs.readFileSync('./htmll.html');
+const express = require('express');
+const app = express();
 // VAPID keys should be generated only once.
-http.createServer(function (req, res) {
-  
-  res.setHeader("Content-Type", "text/javascript");
-  res.write(java);
-  if(req.url.pathname === "/stat"){
-    
-    handler(req, res);
-  }
-  
-}).listen(8080);
+app.use(express.static('fold22'));
 
 
 
