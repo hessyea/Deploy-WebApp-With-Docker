@@ -1,6 +1,5 @@
 const webpush = require('web-push');
 var http = require('http');
-var 
 // VAPID keys should be generated only once.
 http.createServer(function (req, res) {
   navigator.serviceWorker
