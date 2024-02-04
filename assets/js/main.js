@@ -1,6 +1,11 @@
 const webpush = require('web-push');
-
+var https = require('https');
 // VAPID keys should be generated only once.
+https.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.write('Hello World!');
+  res.end();
+}).listen(8080);
 if (process.env.RUN_TIMES == 0){
   var vapidKeys = webpush.generateVAPIDKeys();
   process.env.PUB_KEY = vapidKeys.publicKey;
