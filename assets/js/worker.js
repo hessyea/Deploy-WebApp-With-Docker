@@ -1,7 +1,7 @@
 
 function registerServiceWorker() {
   return navigator.serviceWorker
-    .register("/main.js")
+    .register("/worker.js")
     .then(function (registration) {
       console.log("Service worker successfully registered.");
       return registration;
@@ -31,7 +31,7 @@ async function subscribeUserToPush() {
 
   const subscribeOptions = {
     userVisibleOnly: true,
-    applicationServerKey: PUBLIC_VAPID_KEY,
+    applicationServerKey: process.env.PUB_KEY,
   };
 
   const pushSubscription = await registration.pushManager.subscribe(
