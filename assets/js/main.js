@@ -1,5 +1,5 @@
 const webpush = require('web-push');
-var https = require('https');
+var http = require('http');
 // VAPID keys should be generated only once.
 https.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
