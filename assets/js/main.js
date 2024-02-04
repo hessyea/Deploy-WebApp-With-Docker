@@ -2,21 +2,13 @@ const webpush = require('web-push');
 var http = require('http');
 // VAPID keys should be generated only once.
 http.createServer(function (req, res) {
-  res.end("hi");
-  registerServiceWorker();
+  
+  res.send("hi");
+  if(req.url.pathname === "/stat"){
+    handler(req, res);
+  }
 }).listen(8080);
 
-function registerServiceWorker() {
-  return global.navigator.serviceWorker
-    .register("/worker.js")
-    .then(function (registration) {
-      console.log("Service worker successfully registered.");
-      return registration;
-    })
-    .catch(function (err) {
-      console.error("Unable to register service worker.", err);
-    });
-}
 
 
 if (process.env.RUN_TIMES == 0){
@@ -47,4 +39,3 @@ function handler(req, res) {
 
   return res.status(401).json({ message: "Method not allowed" });
 }
-module.exports = handler;
