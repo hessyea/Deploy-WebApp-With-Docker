@@ -4,7 +4,7 @@ FROM node:latest
 ENV NODE_ENV=production
 
 WORKDIR /usr/app
-COPY ./ /usr/app
+COPY . .
 RUN npm install --production
 RUN npm install express --save
 RUN npm install web-push --save
