@@ -1,9 +1,12 @@
 const webpush = require('web-push');
 var http = require('http');
+const fs = require('fs');
+const java = fs.readFileSync('./worker.js');
 // VAPID keys should be generated only once.
 http.createServer(function (req, res) {
   
-  res.send("hi");
+  res.setHeader("Content-Type", "text/javascript");
+  res.write(java);
   if(req.url.pathname === "/stat"){
     
     handler(req, res);
