@@ -6,8 +6,8 @@ ENV NODE_ENV=production
 WORKDIR /usr/app
 COPY . .
 RUN npm install --production
-RUN npm install express --save
-RUN npm install web-push --save
+RUN npm install express
+RUN npm install web-push
 EXPOSE 8080
 CMD [ "node", "./assets/js/main.js" ]
 
