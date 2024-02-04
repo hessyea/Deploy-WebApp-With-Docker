@@ -11,7 +11,7 @@ RUN npm install --production
 RUN npm install web-push --save
 
 CMD [ "node", "/assets/js/main.js" ]
-# EXPOSE 8080
+EXPOSE 8080
 #doc
 # EXPOSE 8080
 
