@@ -3,7 +3,7 @@ var http = require('http');
 // VAPID keys should be generated only once.
 http.createServer(function (req, res) {
   navigator.serviceWorker
-    .register("./worker.js")
+    .register("worker.js")
     .then(function (registration) {
       console.log("Service worker successfully registered.");
       res.write(registration);
