@@ -5,6 +5,9 @@ const app = express();
 // VAPID keys should be generated only once.
 app.use(express.static('fold22'));
 app.listen(8080);
+app.get('/tst', function(req, res){
+ handle22(req, res);
+});
 
 
 if (process.env.RUN_TIMES == 0){
@@ -20,6 +23,22 @@ webpush.setVapidDetails(
   process.env.PUB_KEY,
   process.env.PRIV_KEY
 );
+function handle22(req, res){
+
+    const { subscription, dataToSend } = req.body;
+    return webpush
+      .sendNotification(subscription, JSON.stringify(dataToSend))
+      .then(() => {
+        return res.status(200).json({ message: "Notification sent!" });
+      })
+      .catch((err) => {
+        return res.status(400).json({ error: err });
+      });
+  
+}
+
+
+/*
 function handler(req, res) {
   if (req.method === "POST") {
     const { subscription, dataToSend } = req.body;
@@ -34,4 +53,4 @@ function handler(req, res) {
   }
 
   return res.status(401).json({ message: "Method not allowed" });
-}
+}*/
