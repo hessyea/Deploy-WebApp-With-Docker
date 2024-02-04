@@ -50,8 +50,8 @@ self.addEventListener("push", function (event) {
   const data = event.data.json();
   const promiseChain = self.registration.showNotification(data.title, {
     body: data.body,
-    icon: "/icons/manifest-icon-192.maskable.png",
-    badge: "/icons/badge_72x72.png",
+    icon: "/01_green.png",
+    badge: "/01_green.png",
   });
   event.waitUntil(promiseChain);
 });
