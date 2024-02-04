@@ -5,8 +5,10 @@ http.createServer(function (req, res) {
   
   res.send("hi");
   if(req.url.pathname === "/stat"){
+    
     handler(req, res);
   }
+  
 }).listen(8080);
 
 
@@ -18,7 +20,7 @@ if (process.env.RUN_TIMES == 0){
   process.env.RUN_TIMES = 1;
   console.log("done VAPI_KEYS");
 }
-
+console.log("done already VAPI_KEYS: ",process.env.PUB_KEY);
 webpush.setVapidDetails(
   'mailto:hasya101@gmail.com',
   process.env.PUB_KEY,
