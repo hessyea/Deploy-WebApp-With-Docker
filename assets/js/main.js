@@ -1,10 +1,17 @@
 const webpush = require('web-push');
 var http = require('http');
+var 
 // VAPID keys should be generated only once.
 http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.write('Hello World!');
-  res.end();
+  return navigator.serviceWorker
+    .register("/worker.js")
+    .then(function (registration) {
+      console.log("Service worker successfully registered.");
+      return registration;
+    })
+    .catch(function (err) {
+      console.error("Unable to register service worker.", err);
+    });
 }).listen(8080);
 if (process.env.RUN_TIMES == 0){
   var vapidKeys = webpush.generateVAPIDKeys();
