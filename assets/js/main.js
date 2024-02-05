@@ -3,11 +3,12 @@ var http = require('http');
 const express = require('express');
 const app = express();
 // VAPID keys should be generated only once.
+app.use(express.static('fold22'));
 app.listen(8080, function(err){
     if (err) console.log("Error in server setup")
     console.log("Server listening on Port");
 });
-app.use(express.static('fold22'));
+
 /*
 app.get('/tst', function(req, res){
  handle22(req, res);
