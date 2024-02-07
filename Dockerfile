@@ -10,6 +10,7 @@ RUN npm install express
 RUN npm install web-push
 RUN npm install pg
 RUN npm install dotenv
+RUN npm install body-parser
 EXPOSE 8080
 CMD [ "node", "./assets/js/main.js" ]
 
