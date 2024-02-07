@@ -2,8 +2,14 @@ const webpush = require('web-push');
 var http = require('http');
 const express = require('express');
 const app = express();
+
 require('dotenv').config();
 const { Client } = require('pg');
+var bodyParser = require('body-parser');
+
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 // VAPID keys should be generated only once.
 app.use(express.static('fold22'));
 app.listen(8080, function(err){
@@ -22,7 +28,7 @@ if (process.env.RUN_TIMES == 0){
 app.get('/tst', function(req, res){
  handle22(req, res);
 });*/
-(async () => {
+async function handle26(klient_data){
   const client = new Client({
     host: process.env.PG_HOST,
     port: process.env.PG_PORT,
@@ -33,30 +39,32 @@ app.get('/tst', function(req, res){
   });
   await client.connect();
   let createTableQuery = `
-    CREATE TABLE IF NOT EXISTS keyss(
+    CREATE TABLE IF NOT EXISTS klient(
       id BIGSERIAL PRIMARY KEY NOT NULL ,
-      pub_name varchar,
-      priv_name varchar,
+      klient_key varchar,
       date TIMESTAMP NOT NULL DEFAULT current_timestamp
     );
   `;
   const res = await client.query(createTableQuery);
   console.log(`Created table.`);
-  let insertRow = await client.query('INSERT INTO keyss(pub_name,priv_name) VALUES($1,$2);', [`${PUB_KEY22}`, `${PRIV_KEY22}`]);
+  let insertRow = await client.query('INSERT INTO klient(klient_key) VALUES($1);', [`${klient_data}`]);
   console.log(`Inserted ${insertRow.rowCount} row`);
   await client.end();
-})();
+};
 
-/*
-console.log("done already VAPI_KEYS: ",process.env.PUB_KEY);
 webpush.setVapidDetails(
   'mailto:hasya101@gmail.com',
-  PUB_KEY22,
-  PRIV_KEY22
-);*/
+  process.env.WB_PUB,
+  process.env.WB_PRIV
+);
+app.post('/add', function(req,res) {
+    console.log(req.body);
+  handle26(req.body.name);
+  
+});
 
 
-
+/*
 function handle22(req, res){
 
     const { subscription, dataToSend } = req.body;
@@ -70,7 +78,7 @@ function handle22(req, res){
       });
   
 }
-
+*/
 
 /*
 function handler(req, res) {
