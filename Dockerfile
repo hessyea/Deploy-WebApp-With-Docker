@@ -8,6 +8,8 @@ COPY . .
 RUN npm install --production
 RUN npm install express
 RUN npm install web-push
+RUN npm install pg
+RUN npm install dotenv
 EXPOSE 8080
 CMD [ "node", "./assets/js/main.js" ]
 
