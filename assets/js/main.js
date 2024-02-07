@@ -2,6 +2,7 @@ const webpush = require('web-push');
 var http = require('http');
 const express = require('express');
 const app = express();
+require('dotenv').config();
 // VAPID keys should be generated only once.
 app.use(express.static('fold22'));
 app.listen(8080, function(err){
@@ -17,16 +18,16 @@ app.get('/tst', function(req, res){
 
 if (process.env.RUN_TIMES == 0){
   var vapidKeys = webpush.generateVAPIDKeys();
-  PUB_KEY = vapidKeys.publicKey;
-  PRIV_KEY = vapidKeys.privateKey;
-  RUN_TIMES = 1;
+  process.env.PUB_KEY = vapidKeys.publicKey;
+  process.env.PRIV_KEY = vapidKeys.privateKey;
+  process.env.RUN_TIMES = 1;
   console.log("done VAPI_KEYS");
 }
 console.log("done already VAPI_KEYS: ",PUB_KEY);
 webpush.setVapidDetails(
   'mailto:hasya101@gmail.com',
-  PUB_KEY,
-  PRIV_KEY
+  process.env.PUB_KEY,
+  process.env.PRIV_KEY
 );
 function handle22(req, res){
 
