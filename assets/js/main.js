@@ -2,7 +2,7 @@ const webpush = require('web-push');
 var http = require('http');
 const express = require('express');
 const app = express();
-console.log(require('dotenv').config());
+require('dotenv').config();
 const { Client } = require('pg');
 // VAPID keys should be generated only once.
 app.use(express.static('fold22'));
@@ -10,13 +10,6 @@ app.listen(8080, function(err){
     if (err) console.log("Error in server setup")
     console.log("Server listening on Port");
 });
-
-/*
-app.get('/tst', function(req, res){
- handle22(req, res);
-});*/
-
-
 if (process.env.RUN_TIMES == 0){
   var vapidKeys = webpush.generateVAPIDKeys();
   process.env.PUB_KEY = vapidKeys.publicKey;
@@ -24,13 +17,10 @@ if (process.env.RUN_TIMES == 0){
   global.RUN_TIMES = 1;
   console.log("done VAPI_KEYS");
 }
-console.log("done already VAPI_KEYS: ",process.env.PUB_KEY);
-webpush.setVapidDetails(
-  'mailto:hasya101@gmail.com',
-  process.env.PUB_KEY,
-  process.env.PRIV_KEY
-);
-
+/*
+app.get('/tst', function(req, res){
+ handle22(req, res);
+});*/
 (async () => {
   const client = new Client({
     host: process.env.PG_HOST,
@@ -41,10 +31,30 @@ webpush.setVapidDetails(
     ssl: true,
   });
   await client.connect();
-  const res22 = await client.query('SELECT $1::text as connected', ['Connection to postgres successful!']);
-  console.log(res.rows[0].connected);
+  let createTableQuery = `
+    CREATE TABLE IF NOT EXISTS keyss(
+      id BIGSERIAL PRIMARY KEY NOT NULL ,
+      pub_name varchar,
+      priv_name varchar,
+      date TIMESTAMP NOT NULL DEFAULT current_timestamp
+    );
+  `;
+  const res = await client.query(createTableQuery);
+  console.log(`Created table.`);
+  let insertRow = await client.query('INSERT INTO keyss(pub_name,priv_name) VALUES($1,$2);', [`${process.env.PUB_KEY, process.env.PRIV_KEY}`]);
+  console.log(`Inserted ${insertRow.rowCount} row`);
   await client.end();
 })();
+
+
+console.log("done already VAPI_KEYS: ",process.env.PUB_KEY);
+webpush.setVapidDetails(
+  'mailto:hasya101@gmail.com',
+  process.env.PUB_KEY,
+  process.env.PRIV_KEY
+);
+
+
 
 function handle22(req, res){
 
