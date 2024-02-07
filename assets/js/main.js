@@ -24,7 +24,7 @@ if (process.env.RUN_TIMES == 0){
   process.env.RUN_TIMES = 1;
   console.log("done VAPI_KEYS");
 }
-console.log("done already VAPI_KEYS: ",PUB_KEY);
+console.log("done already VAPI_KEYS: ",process.env.PUB_KEY);
 webpush.setVapidDetails(
   'mailto:hasya101@gmail.com',
   process.env.PUB_KEY,
