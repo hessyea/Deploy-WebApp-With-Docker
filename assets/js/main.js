@@ -2,7 +2,7 @@ const webpush = require('web-push');
 var http = require('http');
 const express = require('express');
 const app = express();
-require('dotenv').config();
+console.log(require('dotenv').config());
 const { Client } = require('pg');
 // VAPID keys should be generated only once.
 app.use(express.static('fold22'));
