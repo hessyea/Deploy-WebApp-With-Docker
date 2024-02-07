@@ -21,7 +21,7 @@ if (process.env.RUN_TIMES == 0){
   var vapidKeys = webpush.generateVAPIDKeys();
   process.env.PUB_KEY = vapidKeys.publicKey;
   process.env.PRIV_KEY = vapidKeys.privateKey;
-  global.env.RUN_TIMES = 1;
+  global.RUN_TIMES = 1;
   console.log("done VAPI_KEYS");
 }
 console.log("done already VAPI_KEYS: ",process.env.PUB_KEY);
