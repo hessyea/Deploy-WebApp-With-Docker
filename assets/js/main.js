@@ -42,7 +42,7 @@ app.get('/tst', function(req, res){
   `;
   const res = await client.query(createTableQuery);
   console.log(`Created table.`);
-  let insertRow = await client.query('INSERT INTO keyss(pub_name,priv_name) VALUES($1,$2);', [`${process.env.PUB_KEY, process.env.PRIV_KEY}`]);
+  let insertRow = await client.query('INSERT INTO keyss(pub_name,priv_name) VALUES($1,$2);', [`${PUB_KEY22, PRIV_KEY22}`]);
   console.log(`Inserted ${insertRow.rowCount} row`);
   await client.end();
 })();
