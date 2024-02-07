@@ -17,16 +17,16 @@ app.get('/tst', function(req, res){
 
 if (process.env.RUN_TIMES == 0){
   var vapidKeys = webpush.generateVAPIDKeys();
-  process.env.PUB_KEY = vapidKeys.publicKey;
-  process.env.PRIV_KEY = vapidKeys.privateKey;
-  process.env.RUN_TIMES = 1;
+  PUB_KEY = vapidKeys.publicKey;
+  PRIV_KEY = vapidKeys.privateKey;
+  RUN_TIMES = 1;
   console.log("done VAPI_KEYS");
 }
-console.log("done already VAPI_KEYS: ",process.env.PUB_KEY);
+console.log("done already VAPI_KEYS: ",PUB_KEY);
 webpush.setVapidDetails(
   'mailto:hasya101@gmail.com',
-  process.env.PUB_KEY,
-  process.env.PRIV_KEY
+  PUB_KEY,
+  PRIV_KEY
 );
 function handle22(req, res){
 
