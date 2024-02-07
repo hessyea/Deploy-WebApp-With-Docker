@@ -10,11 +10,12 @@ app.listen(8080, function(err){
     if (err) console.log("Error in server setup")
     console.log("Server listening on Port");
 });
+var PUB_KEY22 = "";
+var PRIV_KEY22 = "";
 if (process.env.RUN_TIMES == 0){
   var vapidKeys = webpush.generateVAPIDKeys();
-  process.env.PUB_KEY = vapidKeys.publicKey;
-  process.env.PRIV_KEY = vapidKeys.privateKey;
-  global.RUN_TIMES = 1;
+  PUB_KEY22 = vapidKeys.publicKey;
+  PRIV_KEY22 = vapidKeys.privateKey;
   console.log("done VAPI_KEYS");
 }
 /*
@@ -46,13 +47,13 @@ app.get('/tst', function(req, res){
   await client.end();
 })();
 
-
+/*
 console.log("done already VAPI_KEYS: ",process.env.PUB_KEY);
 webpush.setVapidDetails(
   'mailto:hasya101@gmail.com',
-  process.env.PUB_KEY,
-  process.env.PRIV_KEY
-);
+  PUB_KEY22,
+  PRIV_KEY22
+);*/
 
 
 
