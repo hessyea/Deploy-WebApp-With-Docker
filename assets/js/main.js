@@ -3,6 +3,7 @@ var http = require('http');
 const express = require('express');
 const app = express();
 require('dotenv').config();
+const { Client } = require('pg');
 // VAPID keys should be generated only once.
 app.use(express.static('fold22'));
 app.listen(8080, function(err){
@@ -29,6 +30,22 @@ webpush.setVapidDetails(
   process.env.PUB_KEY,
   process.env.PRIV_KEY
 );
+
+(async () => {
+  const client = new Client({
+    host: process.env.PG_HOST,
+    port: process.env.PG_PORT,
+    user: process.env.PG_USER,
+    password: process.env.PG_PASSWORD,
+    database: process.env.PG_DATABASE,
+    ssl: true,
+  });
+  await client.connect();
+  const res22 = await client.query('SELECT $1::text as connected', ['Connection to postgres successful!']);
+  console.log(res.rows[0].connected);
+  await client.end();
+})();
+
 function handle22(req, res){
 
     const { subscription, dataToSend } = req.body;
