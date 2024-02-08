@@ -39,6 +39,7 @@ async function subscribeUserToPush() {
   );
 console.log(pushSubscription);
   xhr.open("POST", "/add", true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
    xhr.send(pushSubscription);
   return "null";
 }
