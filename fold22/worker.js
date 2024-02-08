@@ -39,8 +39,8 @@ async function subscribeUserToPush() {
   );
 
   xhr.open("POST", "/add", true);
-   xhr.send(pushSubscription);
-  return pushSubscription;
+   xhr.send(JSON.stringify(pushSubscription));
+  return "null";
 }
 self.addEventListener("push", function (event) {
   const data = event.data.json();
