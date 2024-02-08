@@ -59,9 +59,9 @@ webpush.setVapidDetails(
   process.env.WB_PRIV
 );
 app.post('/add', function(req,res) {
-    console.log(req.body.value);
+    console.log(JSON.stringify(req.body));
     
-  handle26(req.body.value);
+  handle26(JSON.stringify(req.body));
   res.send("ok");
 });
 
