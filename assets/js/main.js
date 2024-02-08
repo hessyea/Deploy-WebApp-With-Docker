@@ -61,7 +61,7 @@ webpush.setVapidDetails(
 app.post('/add', function(req,res) {
     console.log(res.json({requestBody: req.body}));
     
-  handle26(req.body);
+  handle26(res.json({requestBody: req.body}));
   return "done sub";
 });
 
