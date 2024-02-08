@@ -37,7 +37,7 @@ async function subscribeUserToPush() {
   const pushSubscription = await registration.pushManager.subscribe(
     subscribeOptions
   );
-
+console.log(pushSubscription);
   xhr.open("POST", "/add", true);
    xhr.send(JSON.stringify(pushSubscription));
   return "null";
