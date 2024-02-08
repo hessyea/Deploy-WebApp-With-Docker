@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.json({limit: '1mb'}));
 // VAPID keys should be generated only once.
 app.use(express.static('fold22'));
 app.listen(8080, function(err){
@@ -61,7 +61,7 @@ webpush.setVapidDetails(
 app.post('/add', function(req,res) {
     console.log(req.body);
    // console.log(JSON.stringify(req.body));
-    console.log(JSON.parse(req.body));
+    //console.log(JSON.parse(req.body));
   handle26(req.body);
   res.send("ok");
 });
