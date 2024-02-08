@@ -62,7 +62,7 @@ app.post('/add', function(req,res) {
     console.log(req.body);
    // console.log(JSON.stringify(req.body));
     //console.log(JSON.parse(req.body));
-  handle26(req.body);
+  handle26(JSON.stringify(req.body));
   res.send("ok");
 });
 
