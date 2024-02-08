@@ -63,9 +63,21 @@ app.post('/add', function(req,res) {
    // console.log(JSON.stringify(req.body));
     //console.log(JSON.parse(req.body));
   handle26(JSON.stringify(req.body));
+    handle13(req.body);
+    handle13(JSON.stringify(req.body));
   res.send("ok");
 });
 
+async function handle13(subb) {
+let mmessage = JSON.stringify({
+                'title' : "PUSH",
+                'body' : "worx"
+            });
+webpush.sendNotification(subb,mmessage).catch(function(error) {
+                console.error(error.stack);
+            });
+
+}
 
 /*
 function handle22(req, res){
