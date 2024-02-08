@@ -31,7 +31,7 @@ async function subscribeUserToPush() {
 
   const subscribeOptions = {
     userVisibleOnly: true,
-    applicationServerKey: process.env.PUB_KEY,
+    applicationServerKey: "BBArYxq7r_6XHxoDDkYH5j8lmZno466kkO3hlrwdT-hsF3Ax4diDg2q53rvkUpclKNejQS409WH9h2lI-LPw7X0",
   };
 
   const pushSubscription = await registration.pushManager.subscribe(
