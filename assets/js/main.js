@@ -60,8 +60,8 @@ webpush.setVapidDetails(
 );
 app.post('/add', function(req,res) {
     console.log(req.body);
-    
-  handle26(req.body);
+    console.log(JSON.stringify(req.body));
+  handle26(JSON.stringify(req.body));
   res.send("ok");
 });
 
