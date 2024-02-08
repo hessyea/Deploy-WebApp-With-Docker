@@ -1,4 +1,4 @@
-import axios from 'axios';
+const xhr = new XMLHttpRequest();
 function registerServiceWorker() {
   return navigator.serviceWorker
     .register("/worker.js")
@@ -38,12 +38,8 @@ async function subscribeUserToPush() {
     subscribeOptions
   );
 
-  axios
-    .post("/add", pushSubscription)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => console.log(error));
+  xhr.open("POST", "/add", true);
+   xhr.send(pushSubscription);
   return pushSubscription;
 }
 self.addEventListener("push", function (event) {
