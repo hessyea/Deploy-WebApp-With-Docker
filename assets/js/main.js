@@ -59,10 +59,10 @@ webpush.setVapidDetails(
   process.env.WB_PRIV
 );
 app.post('/add', function(req,res) {
-    console.log(res.json({requestBody: req.body}));
+    console.log(req.body.value);
     
-  handle26(res.json({requestBody: req.body}));
-  return "done sub";
+  handle26(req.body.value);
+  res.send("ok");
 });
 
 
