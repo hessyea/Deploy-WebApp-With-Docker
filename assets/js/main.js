@@ -47,6 +47,7 @@ async function handle26(klient_data){
   `;
   const res = await client.query(createTableQuery);
   console.log(`Created table.`);
+  console.log(klient_data);
   let insertRow = await client.query('INSERT INTO klient(klient_key) VALUES($1);', [`${klient_data}`]);
   console.log(`Inserted ${insertRow.rowCount} row`);
   await client.end();
@@ -59,7 +60,7 @@ webpush.setVapidDetails(
 );
 app.post('/add', function(req,res) {
     console.log(req.body);
-  handle26(req.body.name);
+  handle26(req.body);
   
 });
 
