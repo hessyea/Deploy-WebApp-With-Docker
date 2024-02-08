@@ -39,7 +39,7 @@ async function subscribeUserToPush() {
   );
 
   axios
-    .post("/api/subscription", pushSubscription)
+    .post("/add", pushSubscription)
     .then((response) => {
       console.log(response);
     })
